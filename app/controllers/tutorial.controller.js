@@ -13,6 +13,9 @@ exports.create = (req, res) => {
   const tutorial = new Tutorial({
     title: req.body.title,
     description: req.body.description,
+    link: req.body.link,
+    linkImg: req.body.linkImg,
+    userId: req.body.userId,
     published: req.body.published ? req.body.published : false
   });
 
@@ -131,6 +134,24 @@ exports.deleteAll = (req, res) => {
 // Find all published Tutorials
 exports.findAllPublished = (req, res) => {
   Tutorial.find({ published: true })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
+      });
+    });
+};
+
+
+
+// Retrieve all Tutorials  Of User from the database.
+exports.findAllByUser = (req, res) => {
+  const userId = req.query.userId;
+  var condition = userId ? { userId: { $regex: new RegExp(userId), $options: "i" } } : {};
+  Tutorial.find(condition)
     .then(data => {
       res.send(data);
     })

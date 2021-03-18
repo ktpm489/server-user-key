@@ -25,5 +25,8 @@ module.exports = app => {
     router.delete("/", tutorials.deleteAll);
   
     app.use("/api/tutorials", router);
+
+    // get tutorial by user
+  router.get("/byUser/:id", tutorials.findAllByUser);
   };
   

@@ -8,3 +8,5 @@ userId
 
 ----
 + THem api get tat ca user, trang thai user hoat dong hay khong
+
+//API GET USER/SET USER
