@@ -23,10 +23,11 @@ module.exports = app => {
   
     // Create a new Tutorial
     router.delete("/", tutorials.deleteAll);
+    // get tutorial by user
+    router.get("/byUser/:id", tutorials.findAllByUser);
   
     app.use("/api/tutorials", router);
 
-    // get tutorial by user
-  router.get("/byUser/:id", tutorials.findAllByUser);
+  
   };
   
